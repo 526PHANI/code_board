@@ -165,8 +165,8 @@
 }
 
 @theme profile{
-  --an-profile-width: 84.938rem;
-  --an-profile-padding: 1.125rem;
+  --an-profile-width: 80rem;
+  --an-profile-padding: 1rem;
   --an-profile-background: #fff;
   --an-profile-text-color: #000;
   --an-profile-border-radius: 0.75rem;

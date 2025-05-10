@@ -18,7 +18,7 @@ export function ViewProfile() {
               <CardTitle className="text-(--an-profile-text-color) font-urbanist text-(length:--an-profile-title-text-size) font-(--an-profile-text-weight)">
                 Riti Shan
               </CardTitle>
-              <div className="rounded-(--an-profile-active-border-radius) bg-(--an-profile-active-bg) flex justify-center items-center px-4 py-1 h-(--an-profile-active-height) mt-1.5">
+              <div className="rounded-(--an-profile-active-border-radius) bg-(--an-profile-active-bg) flex justify-center items-center px-4 py-1 h-(--an-profile-active-height)">
                 <span className="text-(--an-profile-active-color) font-urbanist text-(length:--an-profile-active-text-size) font-(--an-profile-text-weight)">
                   Active
                 </span>
@@ -29,7 +29,7 @@ export function ViewProfile() {
           <CardContent className="mt-2">
             <form className="flex flex-col items-start gap-(--an-profile-form-gap)">
               <div className="flex flex-start gap-(--an-profile-form-div-gap) self-stretch">
-                <div className="flex flex-col w-(--an-profile-form-div-width) justify-center align-start">
+                <div className="flex flex-col gap-2 w-(--an-profile-form-div-width) justify-center align-start">
                   <Label
                     htmlFor="email"
                     className="text-(--an-profile-label-color) font-urbanist text-(length:--an-profile-text-size) font-(--an-profile-label-weight)"
@@ -43,7 +43,7 @@ export function ViewProfile() {
                     ritishan123@gmail.com
                   </p>
                 </div>
-                <div className="flex flex-col w-(--an-profile-form-div-width) justify-center align-start">
+                <div className="flex flex-col gap-2 w-(--an-profile-form-div-width) justify-center align-start">
                   <Label
                     htmlFor="mobile"
                     className="text-(--an-profile-label-color) font-urbanist text-(length:--an-profile-text-size) font-(--an-profile-label-weight)"
@@ -57,7 +57,7 @@ export function ViewProfile() {
                     9123456789
                   </p>
                 </div>
-                <div className="flex flex-col w-(--an-profile-form-div-width) justify-center align-start">
+                <div className="flex flex-col gap-2 w-(--an-profile-form-div-width) justify-center align-start">
                   <Label
                     htmlFor="designation"
                     className="text-(--an-profile-label-color) font-urbanist text-(length:--an-profile-text-size) font-(--an-profile-label-weight)"
@@ -73,7 +73,7 @@ export function ViewProfile() {
                 </div>
               </div>
               <div className="flex flex-start gap-(--an-profile-form-div-gap) self-stretch">
-                <div className="flex flex-col w-(--an-profile-form-div-width) justify-center align-start">
+                <div className="flex flex-col gap-2 w-(--an-profile-form-div-width) justify-center align-start">
                   <Label
                     htmlFor="birth"
                     className="text-(--an-profile-label-color) font-urbanist text-(length:--an-profile-text-size) font-(--an-profile-label-weight)"
@@ -87,7 +87,7 @@ export function ViewProfile() {
                     26 March 2003
                   </p>
                 </div>
-                <div className="flex flex-col w-(--an-profile-form-div-width) justify-center align-start">
+                <div className="flex flex-col gap-2 w-(--an-profile-form-div-width) justify-center align-start">
                   <Label
                     htmlFor="joining"
                     className="text-(--an-profile-label-color) font-urbanist text-(length:--an-profile-text-size) font-(--an-profile-label-weight)"
