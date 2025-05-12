@@ -1,8 +1,22 @@
 import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
 import { Label } from "../ui/label";
 import { Avatar, AvatarImage } from "../ui/avatar";
+import { useQuery } from "@tanstack/react-query";
+import { getProfileAPI } from "~/http/services/profile";
+import dayjs from "dayjs";
+import { useParams } from "@tanstack/react-router";
 
 export function ViewProfile() {
+  const { id } = useParams({ from: "/profile/$id" });
+
+  const { isLoading, data } = useQuery({
+    queryKey: ['user', id],
+    queryFn: () => getProfileAPI(id),
+    enabled: !!id,
+  });
+
+  const user = data?.data;
+
   return (
     <Card className="w-300 h-45 p-4 items-start rounded-(--an-profile-border-radius) bg-(--an-profile-background) m-5 shadow-none border">
       <div className="flex">
@@ -16,7 +30,7 @@ export function ViewProfile() {
           <CardHeader>
             <div className="flex gap-5 items-start">
               <CardTitle className="text-(--an-profile-text-color) font-[urbanist] text-(length:--an-profile-title-text-size) font-medium">
-                Riti Shan
+                {user?.first_name} {user?.last_name}
               </CardTitle>
               <div className="rounded-4xl bg-(--an-profile-active-bg) flex justify-center items-center px-4 py-1 h-6">
                 <span className="text-(--an-profile-active-color) font-[urbanist] text-(length:--an-profile-active-text-size) font-medium">
@@ -40,7 +54,7 @@ export function ViewProfile() {
                     id="email"
                     className="text-(--an-profile-text-color) font-[urbanist] text-(length:--an-profile-text-size) font-medium"
                   >
-                    ritishan123@gmail.com
+                    {user?.email}
                   </p>
                 </div>
                 <div className="flex flex-col gap-2 w-75 justify-center align-start">
@@ -54,7 +68,7 @@ export function ViewProfile() {
                     id="mobile"
                     className="text-(--an-profile-text-color) font-[urbanist] text-(length:--an-profile-text-size) font-medium"
                   >
-                    9123456789
+                    {user?.phone}
                   </p>
                 </div>
                 <div className="flex flex-col gap-2 w-75 justify-center align-start">
@@ -68,7 +82,7 @@ export function ViewProfile() {
                     id="designation"
                     className="text-(--an-profile-text-color) font-[urbanist] text-(length:--an-profile-text-size) font-medium"
                   >
-                    Frontend Developer
+                    {user?.designation}
                   </p>
                 </div>
               </div>
@@ -84,7 +98,7 @@ export function ViewProfile() {
                     id="email"
                     className="text-(--an-profile-text-color) font-[urbanist] text-(length:--an-profile-text-size) font-medium"
                   >
-                    26 March 2003
+                    {dayjs(user?.dob).format("DD MMM YYYY")}
                   </p>
                 </div>
                 <div className="flex flex-col gap-2 w-75 justify-center align-start">
@@ -98,7 +112,7 @@ export function ViewProfile() {
                     id="mobile"
                     className="text-(--an-profile-text-color) font-[urbanist] text-(length:--an-profile-text-size) font-medium"
                   >
-                    03 April 2024
+                    {dayjs(user?.doj).format("DD MMM YYYY")}
                   </p>
                 </div>
               </div>
