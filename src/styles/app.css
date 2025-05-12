@@ -165,26 +165,15 @@
 }
 
 @theme profile{
-  --an-profile-width: 80rem;
-  --an-profile-padding: 1rem;
   --an-profile-background: #fff;
   --an-profile-text-color: #000;
   --an-profile-border-radius: 0.75rem;
-  --an-profile-avatar-size: 9.25rem;
-  --an-profile-text-weight: 500;
-  --an-profile-label-weight: 400;
   --an-profile-label-color: #828282;
   --an-profile-text-size: 1rem;
-  --an-profile-form-div-width: 18.75rem;
-  --an-profile-form-gap: 1.25rem;
   --an-profile-title-text-size: 1.5rem;
   --an-profile-active-bg: rgba(5, 161, 85, 0.20);
   --an-profile-active-color: #05A155;
   --an-profile-active-text-size: 0.875rem;
-  --an-profile-active-border-radius: 1.875rem;
-  --an-profile-active-height: 1.563rem;
-  --an-profile-form-div-gap: 2.5rem;
-  --an-profile-header-gap: 1.5rem;
 }
 
 
