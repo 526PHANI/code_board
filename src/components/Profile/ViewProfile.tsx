@@ -16,6 +16,10 @@ export function ViewProfile() {
   });
 
   const user = data?.data;
+  function capital(string: string) {
+    return string.split('').map((char: string, index) =>
+      index === 0 ? char.toUpperCase() : char).join('')
+  }
 
   return (
     <Card className="w-300 h-45 p-4 items-start rounded-(--an-profile-border-radius) bg-(--an-profile-background) m-5 shadow-none border">
@@ -30,7 +34,7 @@ export function ViewProfile() {
           <CardHeader>
             <div className="flex gap-5 items-start">
               <CardTitle className="text-(--an-profile-text-color) font-[urbanist] text-(length:--an-profile-title-text-size) font-medium">
-                {user?.first_name} {user?.last_name}
+                {capital(user?.first_name || "")} {capital(user?.last_name || "")}
               </CardTitle>
               <div className="rounded-4xl bg-(--an-profile-active-bg) flex justify-center items-center px-4 py-1 h-6">
                 <span className="text-(--an-profile-active-color) font-[urbanist] text-(length:--an-profile-active-text-size) font-medium">

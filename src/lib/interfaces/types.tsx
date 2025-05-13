@@ -1,10 +1,11 @@
-export interface UserData {
+export interface UserProfile {
+  id: number;
   first_name: string;
-  last_name:string;
+  last_name: string;
   email: string;
-  mobile: string;
-  designation: string;  
+  phone: string;
+  status: string;
   dob: string;
   doj: string;
-  status: string;
+  designation: string;
 }
