@@ -12,6 +12,7 @@
 
 import { Route as rootRoute } from './routes/__root'
 import { Route as IndexImport } from './routes/index'
+import { Route as TableUserTableImport } from './routes/table/user-table'
 import { Route as ProfileViewProfileImport } from './routes/profile/view-profile'
 
 // Create/Update Routes
@@ -19,6 +20,12 @@ import { Route as ProfileViewProfileImport } from './routes/profile/view-profile
 const IndexRoute = IndexImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const TableUserTableRoute = TableUserTableImport.update({
+  id: '/table/user-table',
+  path: '/table/user-table',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -46,6 +53,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ProfileViewProfileImport
       parentRoute: typeof rootRoute
     }
+    '/table/user-table': {
+      id: '/table/user-table'
+      path: '/table/user-table'
+      fullPath: '/table/user-table'
+      preLoaderRoute: typeof TableUserTableImport
+      parentRoute: typeof rootRoute
+    }
   }
 }
 
@@ -54,36 +68,41 @@ declare module '@tanstack/react-router' {
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/profile/view-profile': typeof ProfileViewProfileRoute
+  '/table/user-table': typeof TableUserTableRoute
 }
 
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/profile/view-profile': typeof ProfileViewProfileRoute
+  '/table/user-table': typeof TableUserTableRoute
 }
 
 export interface FileRoutesById {
   __root__: typeof rootRoute
   '/': typeof IndexRoute
   '/profile/view-profile': typeof ProfileViewProfileRoute
+  '/table/user-table': typeof TableUserTableRoute
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/profile/view-profile'
+  fullPaths: '/' | '/profile/view-profile' | '/table/user-table'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/profile/view-profile'
-  id: '__root__' | '/' | '/profile/view-profile'
+  to: '/' | '/profile/view-profile' | '/table/user-table'
+  id: '__root__' | '/' | '/profile/view-profile' | '/table/user-table'
   fileRoutesById: FileRoutesById
 }
 
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   ProfileViewProfileRoute: typeof ProfileViewProfileRoute
+  TableUserTableRoute: typeof TableUserTableRoute
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   ProfileViewProfileRoute: ProfileViewProfileRoute,
+  TableUserTableRoute: TableUserTableRoute,
 }
 
 export const routeTree = rootRoute
@@ -97,7 +116,8 @@ export const routeTree = rootRoute
       "filePath": "__root.tsx",
       "children": [
         "/",
-        "/profile/view-profile"
+        "/profile/view-profile",
+        "/table/user-table"
       ]
     },
     "/": {
@@ -105,6 +125,9 @@ export const routeTree = rootRoute
     },
     "/profile/view-profile": {
       "filePath": "profile/view-profile.tsx"
+    },
+    "/table/user-table": {
+      "filePath": "table/user-table.tsx"
     }
   }
 }

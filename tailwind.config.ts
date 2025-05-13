@@ -7,13 +7,11 @@ module.exports = {
     theme: {
       extend: {
         fontFamily: {
-          inter: ["Inter", "sans-serif"],
-          dmsans: ["DM Sans", "sans-serif"],
-          lexend: ["Lexend" , "sans-serif"],
-          urbanist: ["Urbanist", "sans-serif"],
-        }
-      },
+          inter: ['Inter', 'sans-serif'],
+          urbanist: ['Urbanist', 'sans-serif'],
+        },
+      },    
     },
-    plugins: [],
+    plugins: [require('tailwindcss-animate')],
   };
   
