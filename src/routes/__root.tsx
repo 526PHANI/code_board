@@ -1,13 +1,10 @@
-import {
-  HeadContent,
-  Link,
-  Outlet,
-  Scripts,
-  createRootRoute,
-} from '@tanstack/react-router'
+import { HeadContent, Outlet, Scripts, createRootRoute } from '@tanstack/react-router'
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import type { ReactNode } from 'react'
 import '../styles/app.css'
 import { seo } from '~/utils/seo'
+
+const queryClient = new QueryClient()
 
 export const Route = createRootRoute({
   head: () => ({
@@ -22,7 +19,7 @@ export const Route = createRootRoute({
       ...seo({
         title:
           'TanStack Start | Type-Safe, Client-First, Full-Stack React Framework',
-        description: `TanStack Start is a type-safe, client-first, full-stack React framework. `,
+        description: `TanStack Start is a type-safe, client-first, full-stack React framework.`,
       }),
     ],
   }),
@@ -31,9 +28,11 @@ export const Route = createRootRoute({
 
 function RootComponent() {
   return (
-    <RootDocument>
-      <Outlet />
-    </RootDocument>
+    <QueryClientProvider client={queryClient}>
+      <RootDocument>
+        <Outlet />
+      </RootDocument>
+    </QueryClientProvider>
   )
 }
 
@@ -43,7 +42,7 @@ function RootDocument({ children }: Readonly<{ children: ReactNode }>) {
       <head>
         <HeadContent />
       </head>
-      <body className=''>
+      <body>
         {children}
         <Scripts />
       </body>

@@ -12,8 +12,12 @@
 
 import { Route as rootRoute } from './routes/__root'
 import { Route as IndexImport } from './routes/index'
+<<<<<<< HEAD
 import { Route as TableUserTableImport } from './routes/table/user-table'
 import { Route as ProfileViewProfileImport } from './routes/profile/view-profile'
+=======
+import { Route as ProfileIdImport } from './routes/profile/$id'
+>>>>>>> sat/codeboard
 
 // Create/Update Routes
 
@@ -23,6 +27,7 @@ const IndexRoute = IndexImport.update({
   getParentRoute: () => rootRoute,
 } as any)
 
+<<<<<<< HEAD
 const TableUserTableRoute = TableUserTableImport.update({
   id: '/table/user-table',
   path: '/table/user-table',
@@ -32,6 +37,11 @@ const TableUserTableRoute = TableUserTableImport.update({
 const ProfileViewProfileRoute = ProfileViewProfileImport.update({
   id: '/profile/view-profile',
   path: '/profile/view-profile',
+=======
+const ProfileIdRoute = ProfileIdImport.update({
+  id: '/profile/$id',
+  path: '/profile/$id',
+>>>>>>> sat/codeboard
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -46,11 +56,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexImport
       parentRoute: typeof rootRoute
     }
-    '/profile/view-profile': {
-      id: '/profile/view-profile'
-      path: '/profile/view-profile'
-      fullPath: '/profile/view-profile'
-      preLoaderRoute: typeof ProfileViewProfileImport
+    '/profile/$id': {
+      id: '/profile/$id'
+      path: '/profile/$id'
+      fullPath: '/profile/$id'
+      preLoaderRoute: typeof ProfileIdImport
       parentRoute: typeof rootRoute
     }
     '/table/user-table': {
@@ -67,42 +77,69 @@ declare module '@tanstack/react-router' {
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+<<<<<<< HEAD
   '/profile/view-profile': typeof ProfileViewProfileRoute
   '/table/user-table': typeof TableUserTableRoute
+=======
+  '/profile/$id': typeof ProfileIdRoute
+>>>>>>> sat/codeboard
 }
 
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+<<<<<<< HEAD
   '/profile/view-profile': typeof ProfileViewProfileRoute
   '/table/user-table': typeof TableUserTableRoute
+=======
+  '/profile/$id': typeof ProfileIdRoute
+>>>>>>> sat/codeboard
 }
 
 export interface FileRoutesById {
   __root__: typeof rootRoute
   '/': typeof IndexRoute
+<<<<<<< HEAD
   '/profile/view-profile': typeof ProfileViewProfileRoute
   '/table/user-table': typeof TableUserTableRoute
+=======
+  '/profile/$id': typeof ProfileIdRoute
+>>>>>>> sat/codeboard
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
+<<<<<<< HEAD
   fullPaths: '/' | '/profile/view-profile' | '/table/user-table'
   fileRoutesByTo: FileRoutesByTo
   to: '/' | '/profile/view-profile' | '/table/user-table'
   id: '__root__' | '/' | '/profile/view-profile' | '/table/user-table'
+=======
+  fullPaths: '/' | '/profile/$id'
+  fileRoutesByTo: FileRoutesByTo
+  to: '/' | '/profile/$id'
+  id: '__root__' | '/' | '/profile/$id'
+>>>>>>> sat/codeboard
   fileRoutesById: FileRoutesById
 }
 
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+<<<<<<< HEAD
   ProfileViewProfileRoute: typeof ProfileViewProfileRoute
   TableUserTableRoute: typeof TableUserTableRoute
+=======
+  ProfileIdRoute: typeof ProfileIdRoute
+>>>>>>> sat/codeboard
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+<<<<<<< HEAD
   ProfileViewProfileRoute: ProfileViewProfileRoute,
   TableUserTableRoute: TableUserTableRoute,
+=======
+  ProfileIdRoute: ProfileIdRoute,
+>>>>>>> sat/codeboard
 }
 
 export const routeTree = rootRoute
@@ -116,18 +153,27 @@ export const routeTree = rootRoute
       "filePath": "__root.tsx",
       "children": [
         "/",
+<<<<<<< HEAD
         "/profile/view-profile",
         "/table/user-table"
+=======
+        "/profile/$id"
+>>>>>>> sat/codeboard
       ]
     },
     "/": {
       "filePath": "index.tsx"
     },
+<<<<<<< HEAD
     "/profile/view-profile": {
       "filePath": "profile/view-profile.tsx"
     },
     "/table/user-table": {
       "filePath": "table/user-table.tsx"
+=======
+    "/profile/$id": {
+      "filePath": "profile/$id.tsx"
+>>>>>>> sat/codeboard
     }
   }
 }
