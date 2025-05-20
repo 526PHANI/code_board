@@ -120,11 +120,13 @@ function CommitsList() {
       });
     }
   }, [search.page_no, search.page_size, navigate]);
-const { data, isLoading, isError } = useQuery<CommitsApiResponse>({
+const { data, isError } = useQuery<CommitsApiResponse>({
   queryKey: ['commits', page_no, page_size],
   queryFn: () => getCommitsApi(page_no, page_size),
   enabled: search.page_no != null && search.page_size != null,
 });
+
+console.log(data,"data for check")
 
 
 if (isError || !data?.data?.data || !Array.isArray(data.data.data)) {
