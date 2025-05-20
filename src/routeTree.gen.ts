@@ -12,12 +12,11 @@
 
 import { Route as rootRoute } from './routes/__root'
 import { Route as IndexImport } from './routes/index'
-<<<<<<< HEAD
-import { Route as TableUserTableImport } from './routes/table/user-table'
-import { Route as ProfileViewProfileImport } from './routes/profile/view-profile'
-=======
+import { Route as TableUserListImport } from './routes/table/user-list'
 import { Route as ProfileIdImport } from './routes/profile/$id'
->>>>>>> sat/codeboard
+import { Route as CommitGetCommitImport } from './routes/commit/get-commit'
+import { Route as CommitAddTempImport } from './routes/commit/add-temp'
+import { Route as CommitAddCommitsImport } from './routes/commit/add-commits'
 
 // Create/Update Routes
 
@@ -27,21 +26,33 @@ const IndexRoute = IndexImport.update({
   getParentRoute: () => rootRoute,
 } as any)
 
-<<<<<<< HEAD
-const TableUserTableRoute = TableUserTableImport.update({
-  id: '/table/user-table',
-  path: '/table/user-table',
+const TableUserListRoute = TableUserListImport.update({
+  id: '/table/user-list',
+  path: '/table/user-list',
   getParentRoute: () => rootRoute,
 } as any)
 
-const ProfileViewProfileRoute = ProfileViewProfileImport.update({
-  id: '/profile/view-profile',
-  path: '/profile/view-profile',
-=======
 const ProfileIdRoute = ProfileIdImport.update({
   id: '/profile/$id',
   path: '/profile/$id',
->>>>>>> sat/codeboard
+  getParentRoute: () => rootRoute,
+} as any)
+
+const CommitGetCommitRoute = CommitGetCommitImport.update({
+  id: '/commit/get-commit',
+  path: '/commit/get-commit',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const CommitAddTempRoute = CommitAddTempImport.update({
+  id: '/commit/add-temp',
+  path: '/commit/add-temp',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const CommitAddCommitsRoute = CommitAddCommitsImport.update({
+  id: '/commit/add-commits',
+  path: '/commit/add-commits',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -56,6 +67,27 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexImport
       parentRoute: typeof rootRoute
     }
+    '/commit/add-commits': {
+      id: '/commit/add-commits'
+      path: '/commit/add-commits'
+      fullPath: '/commit/add-commits'
+      preLoaderRoute: typeof CommitAddCommitsImport
+      parentRoute: typeof rootRoute
+    }
+    '/commit/add-temp': {
+      id: '/commit/add-temp'
+      path: '/commit/add-temp'
+      fullPath: '/commit/add-temp'
+      preLoaderRoute: typeof CommitAddTempImport
+      parentRoute: typeof rootRoute
+    }
+    '/commit/get-commit': {
+      id: '/commit/get-commit'
+      path: '/commit/get-commit'
+      fullPath: '/commit/get-commit'
+      preLoaderRoute: typeof CommitGetCommitImport
+      parentRoute: typeof rootRoute
+    }
     '/profile/$id': {
       id: '/profile/$id'
       path: '/profile/$id'
@@ -63,11 +95,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ProfileIdImport
       parentRoute: typeof rootRoute
     }
-    '/table/user-table': {
-      id: '/table/user-table'
-      path: '/table/user-table'
-      fullPath: '/table/user-table'
-      preLoaderRoute: typeof TableUserTableImport
+    '/table/user-list': {
+      id: '/table/user-list'
+      path: '/table/user-list'
+      fullPath: '/table/user-list'
+      preLoaderRoute: typeof TableUserListImport
       parentRoute: typeof rootRoute
     }
   }
@@ -77,69 +109,76 @@ declare module '@tanstack/react-router' {
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-<<<<<<< HEAD
-  '/profile/view-profile': typeof ProfileViewProfileRoute
-  '/table/user-table': typeof TableUserTableRoute
-=======
+  '/commit/add-commits': typeof CommitAddCommitsRoute
+  '/commit/add-temp': typeof CommitAddTempRoute
+  '/commit/get-commit': typeof CommitGetCommitRoute
   '/profile/$id': typeof ProfileIdRoute
->>>>>>> sat/codeboard
+  '/table/user-list': typeof TableUserListRoute
 }
 
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-<<<<<<< HEAD
-  '/profile/view-profile': typeof ProfileViewProfileRoute
-  '/table/user-table': typeof TableUserTableRoute
-=======
+  '/commit/add-commits': typeof CommitAddCommitsRoute
+  '/commit/add-temp': typeof CommitAddTempRoute
+  '/commit/get-commit': typeof CommitGetCommitRoute
   '/profile/$id': typeof ProfileIdRoute
->>>>>>> sat/codeboard
+  '/table/user-list': typeof TableUserListRoute
 }
 
 export interface FileRoutesById {
   __root__: typeof rootRoute
   '/': typeof IndexRoute
-<<<<<<< HEAD
-  '/profile/view-profile': typeof ProfileViewProfileRoute
-  '/table/user-table': typeof TableUserTableRoute
-=======
+  '/commit/add-commits': typeof CommitAddCommitsRoute
+  '/commit/add-temp': typeof CommitAddTempRoute
+  '/commit/get-commit': typeof CommitGetCommitRoute
   '/profile/$id': typeof ProfileIdRoute
->>>>>>> sat/codeboard
+  '/table/user-list': typeof TableUserListRoute
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-<<<<<<< HEAD
-  fullPaths: '/' | '/profile/view-profile' | '/table/user-table'
+  fullPaths:
+    | '/'
+    | '/commit/add-commits'
+    | '/commit/add-temp'
+    | '/commit/get-commit'
+    | '/profile/$id'
+    | '/table/user-list'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/profile/view-profile' | '/table/user-table'
-  id: '__root__' | '/' | '/profile/view-profile' | '/table/user-table'
-=======
-  fullPaths: '/' | '/profile/$id'
-  fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/profile/$id'
-  id: '__root__' | '/' | '/profile/$id'
->>>>>>> sat/codeboard
+  to:
+    | '/'
+    | '/commit/add-commits'
+    | '/commit/add-temp'
+    | '/commit/get-commit'
+    | '/profile/$id'
+    | '/table/user-list'
+  id:
+    | '__root__'
+    | '/'
+    | '/commit/add-commits'
+    | '/commit/add-temp'
+    | '/commit/get-commit'
+    | '/profile/$id'
+    | '/table/user-list'
   fileRoutesById: FileRoutesById
 }
 
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-<<<<<<< HEAD
-  ProfileViewProfileRoute: typeof ProfileViewProfileRoute
-  TableUserTableRoute: typeof TableUserTableRoute
-=======
+  CommitAddCommitsRoute: typeof CommitAddCommitsRoute
+  CommitAddTempRoute: typeof CommitAddTempRoute
+  CommitGetCommitRoute: typeof CommitGetCommitRoute
   ProfileIdRoute: typeof ProfileIdRoute
->>>>>>> sat/codeboard
+  TableUserListRoute: typeof TableUserListRoute
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-<<<<<<< HEAD
-  ProfileViewProfileRoute: ProfileViewProfileRoute,
-  TableUserTableRoute: TableUserTableRoute,
-=======
+  CommitAddCommitsRoute: CommitAddCommitsRoute,
+  CommitAddTempRoute: CommitAddTempRoute,
+  CommitGetCommitRoute: CommitGetCommitRoute,
   ProfileIdRoute: ProfileIdRoute,
->>>>>>> sat/codeboard
+  TableUserListRoute: TableUserListRoute,
 }
 
 export const routeTree = rootRoute
@@ -153,27 +192,30 @@ export const routeTree = rootRoute
       "filePath": "__root.tsx",
       "children": [
         "/",
-<<<<<<< HEAD
-        "/profile/view-profile",
-        "/table/user-table"
-=======
-        "/profile/$id"
->>>>>>> sat/codeboard
+        "/commit/add-commits",
+        "/commit/add-temp",
+        "/commit/get-commit",
+        "/profile/$id",
+        "/table/user-list"
       ]
     },
     "/": {
       "filePath": "index.tsx"
     },
-<<<<<<< HEAD
-    "/profile/view-profile": {
-      "filePath": "profile/view-profile.tsx"
+    "/commit/add-commits": {
+      "filePath": "commit/add-commits.tsx"
     },
-    "/table/user-table": {
-      "filePath": "table/user-table.tsx"
-=======
+    "/commit/add-temp": {
+      "filePath": "commit/add-temp.tsx"
+    },
+    "/commit/get-commit": {
+      "filePath": "commit/get-commit.tsx"
+    },
     "/profile/$id": {
       "filePath": "profile/$id.tsx"
->>>>>>> sat/codeboard
+    },
+    "/table/user-list": {
+      "filePath": "table/user-list.tsx"
     }
   }
 }

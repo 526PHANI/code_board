@@ -6,10 +6,12 @@ export default defineConfig({
     appDirectory: 'src',
   },
   vite: {
+    
     plugins: [
       tsConfigPaths({
         projects: ['./tsconfig.json'],
       }),
     ],
+    
   },
 })
