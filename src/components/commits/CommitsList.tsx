@@ -7,6 +7,7 @@ import { ProfileTable } from "../an/ProfileTable";
 import { useNavigate, useSearch } from '@tanstack/react-router';
 import { Commit , CommitsApiResponse, SearchParams} from "~/lib/interfaces/types";
 import { getCommitsApi } from "~/http/services/commits";
+import { Route } from '~/routes/commit/get-commit';
 
 
 export const columns: ColumnDef<Commit>[] = [
@@ -83,8 +84,8 @@ export const columns: ColumnDef<Commit>[] = [
 
 
 function CommitsList() {
-const search = useSearch({ strict: false }) as Record<string, string | undefined>;
-  const navigate = useNavigate();
+  const search = Route.useSearch();
+  const navigate = useNavigate({ from: Route.fullPath });
 
   const initialPage = 1;
   const initialpage_size = 10;
@@ -94,17 +95,10 @@ const currentPageSize = Number(search.page_size) || initialpage_size;
 
 
   React.useEffect(() => {
-    if (search.page_no == null || search.page_size == null) {
-      navigate({
-        search: {
-          page_no: search.page_no == null ? initialPage : search.page_no,
-          page_size: search.page_size == null ? initialpage_size : search.page_size,
-          ...search,
-        },
-        replace: true,
-      });
+    if (search.page_no !== currentPage || search.page_size !== currentPageSize) {
     }
-  }, [search.page_no, search.page_size, navigate, search, initialPage, initialpage_size]);
+  }, [search.page_no, search.page_size, navigate, currentPage, currentPageSize]);
+
 
 
 const { data,isLoading, isError } = useQuery<CommitsApiResponse>({
@@ -144,19 +138,20 @@ const paginationDetails = {
       data={commits}
       columns={columns}
       paginationDetails={paginationDetails}
-       getData={(params: { page?: number; page_size?: number }) => {
+  getData={(params: { page?: number; page_size?: number }) => {
         navigate({
-          search:{
-            ...search,
-            page_no: params.page !== undefined ? params.page : currentPage,
-            page_size: params.page_size !== undefined ? params.page_size : currentPageSize,
+          search: (prevSearch:any) => {
+            return {
+              ...prevSearch,
+              page_no: params.page !== undefined ? params.page : prevSearch.page_no,
+              page_size: params.page_size !== undefined ? params.page_size : prevSearch.page_size,
+            };
           },
         });
       }}
     />
   );
 }
-
 
 export default CommitsList;
 

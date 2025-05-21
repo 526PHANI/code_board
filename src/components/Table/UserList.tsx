@@ -4,14 +4,13 @@ import dayjs from "dayjs";
 import { ColumnDef } from "@tanstack/react-table";
 import { Button } from "../ui/button";
 import { ProfileTable } from "../an/ProfileTable";
-import { useNavigate, useSearch } from '@tanstack/react-router';
+import { useNavigate } from '@tanstack/react-router';
 import { UserProfile, UsersApiResponse, } from "~/lib/interfaces/types";
 import { getUsersAPI } from "~/http/services/allprofiles";
-
+import { Route } from '~/routes/table/user-list';
 
 
 export const columns: ColumnDef<UserProfile>[] = [
-
   {
     accessorKey: "full_name",
     header: () => <div>Full Name</div>,
@@ -105,34 +104,23 @@ export const columns: ColumnDef<UserProfile>[] = [
 ];
 
 export function UserList() {
-const search = useSearch({ strict: false }) as Record<string, string | undefined>;
-  const navigate = useNavigate();
+  const search = Route.useSearch();
+  const navigate = useNavigate({ from: Route.fullPath });
 
-  const initialPage = 1;
-  const initialpage_size = 10;
-
-const currentPage = Number(search.page_no) || initialPage;
-const currentPageSize = Number(search.page_size) || initialpage_size;
-
+  const currentPage = search.page_no;
+  const currentPageSize = search.page_size;
 
   React.useEffect(() => {
-    if (search.page_no == null || search.page_size == null) {
-      navigate({
-        search: {
-          page_no: search.page_no == null ? initialPage : search.page_no,
-          page_size: search.page_size == null ? initialpage_size : search.page_size,
-          ...search,
-        },
-        replace: true,
-      });
+    if (search.page_no !== currentPage || search.page_size !== currentPageSize) {
     }
-  }, [search.page_no, search.page_size, navigate, search, initialPage, initialpage_size]);
+  }, [search.page_no, search.page_size, navigate, currentPage, currentPageSize]);
 
-const { data, isLoading, isError } = useQuery<UsersApiResponse>({
-  queryKey: ['users', currentPage, currentPageSize],
-  queryFn: () => getUsersAPI(currentPage, currentPageSize),
-  enabled: search.page_no != null && search.page_size != null,
-});
+
+  const { data, isLoading, isError } = useQuery<UsersApiResponse>({
+    queryKey: ['users', currentPage, currentPageSize],
+    queryFn: () => getUsersAPI(currentPage, currentPageSize),
+    enabled: true,
+  });
 
   if (isLoading) return <div>Loading...</div>;
   if (isError || !data || !data.data || !Array.isArray(data.data.data)) {
@@ -150,15 +138,15 @@ const { data, isLoading, isError } = useQuery<UsersApiResponse>({
     designation: user.designation,
     created_at: user.created_at,
     updated_at: user.updated_at,
-    
+
   }));
 
-const paginationDetails = {
-  page: currentPage,
-  total_pages: data.data.totalPages,
-  total: data.data.total_records,
-  page_size: currentPageSize,
-};
+  const paginationDetails = {
+    page: currentPage,
+    total_pages: data.data.totalPages,
+    total: data.data.total_records,
+    page_size: currentPageSize,
+  };
 
   return (
     <ProfileTable
@@ -167,14 +155,15 @@ const paginationDetails = {
       paginationDetails={paginationDetails}
       getData={(params: { page?: number; page_size?: number }) => {
         navigate({
-          search: (prevSearch) => ({
-            ...prevSearch,
-            page_no: params.page !== undefined ? params.page : page_no,
-            page_size: params.page_size !== undefined ? params.page_size : page_size
-          }),
+          search: (prevSearch:any) => {
+            return {
+              ...prevSearch,
+              page_no: params.page !== undefined ? params.page : prevSearch.page_no,
+              page_size: params.page_size !== undefined ? params.page_size : prevSearch.page_size,
+            };
+          },
         });
       }}
     />
   );
 }
-
